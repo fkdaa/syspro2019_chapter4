@@ -1,3 +1,4 @@
+
 import time
 import RPi.GPIO as GPIO
 
@@ -9,15 +10,17 @@ servo.start(0.0)
 n = 1900/180
 
 def setservo(dig):
-	buf = 1440.0
+	buf = 1440
 	if dig!=0:
 		buf += dig*n
-	buf = buf/20000.0*100
-	print(buf)
-	servo.ChangeDutyCycle(buf)
+	servo.ChangeDutyCycle((buf/20000)*100)
 
-for i in range(-3,4):
-	setservo(i*30)
+for i in range(-3,3):
+	print(i)
+	servo.ChangeDutyCycle(7.2)
+#	setservo(i*30)
+	time.sleep(1.0)
+	servo.ChangeDutyCycle(12.0)
 	time.sleep(1.0)
 
 GPIO.cleanup()
